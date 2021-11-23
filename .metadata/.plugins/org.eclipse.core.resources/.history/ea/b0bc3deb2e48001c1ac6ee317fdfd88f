@@ -1,0 +1,39 @@
+package comprehensiveMS;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class PopularCuisinesScript {
+
+	public static void main(String[] args) throws InterruptedException {
+		// TODO Auto-generated method stub
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\M1073109\\Downloads\\chromedriver_win32\\chromedriver.exe");   
+	    WebDriver driver = new ChromeDriver();   
+	    
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    driver.get("https://www.eazydiner.com/"); 
+	    
+	    driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+	    
+	    driver.findElement(By.xpath("//a[@data-collection='Popular Cuisines in Delhi']")).click();
+	   
+
+        //Locating element by link text and store in variable "Element"        		
+        WebElement Element = driver.findElement(By.linkText("Explore best restaurants nearby Delhi NCR!"));
+
+        // Scrolling down the page till the element is found		
+        for (int i = 0; i < 6000; i++) {
+        	 js.executeScript("arguments[0].scrollIntoView();", Element);
+        }
+        	
+	    
+
+	}
+
+}

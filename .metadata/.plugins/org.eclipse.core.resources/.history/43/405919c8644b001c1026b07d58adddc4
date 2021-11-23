@@ -1,0 +1,71 @@
+package comprehensiveMS;
+
+import java.util.concurrent.TimeUnit;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebDriverException;
+import org.openqa.selenium.chrome.ChromeDriver;
+
+public class AboutUsScript {
+
+	public static void main(String[] args) throws InterruptedException {
+		// ABOUT US SCRIPT
+		
+		System.setProperty("webdriver.chrome.driver", "C:\\Users\\M1073109\\Downloads\\chromedriver_win32\\chromedriver.exe");   
+	    WebDriver driver = new ChromeDriver();   
+	    JavascriptExecutor js = (JavascriptExecutor) driver;
+	    
+	    driver.get("https://www.eazydiner.com/"); 
+	    
+	    //to scroll the page to end
+	    try {
+		       int x = 0;
+		       for (; x <=359; x++) {
+		          ((JavascriptExecutor) driver).executeScript(("window.scrollBy(0," + x + ")"), "");
+		       }
+		       for (; x > 0; x--) {
+		          ((JavascriptExecutor) driver).executeScript(("window.scrollBy(0," + x + ")"), "");
+		       }
+	    } catch (WebDriverException wde) {} catch (Exception e) {}
+	    
+	    
+	    driver.manage().timeouts().implicitlyWait(1,TimeUnit.SECONDS);
+	    
+//	    //to handle allow alert box
+//	    if(driver.findElement(By.id("webpush-onsite")).isDisplayed()) {
+//	    	driver.switchTo().frame(driver.findElement(By.id("webpush-onsite")));
+//	    	driver.findElement(By.id("allow")).click();
+//	    	driver.switchTo().defaultContent();
+//	    	}
+	    
+	    driver.findElement(By.xpath("//a[contains(text(),'About Us')]")).click();
+	   
+        // Scrolling down the page
+       
+        		    try {
+        		       int i = 0;
+        		       for (; i <= 28; i++) {
+        		          ((JavascriptExecutor) driver).executeScript(("window.scrollBy(0," + i + ")"), "");
+        		       }
+        		       for (; i > 0; i--) {
+        		          ((JavascriptExecutor) driver).executeScript(("window.scrollBy(0," + i + ")"), "");
+        		       }
+        		   
+        		       
+        		       Thread.sleep(2000);
+        		       int j = 0;
+        		       for (; j > -28; j--) {
+        		          ((JavascriptExecutor) driver).executeScript(("window.scrollBy(0," + j + ")"), "");
+        		       }
+        		       for (; j < 0; j++) {
+        		          ((JavascriptExecutor) driver).executeScript(("window.scrollBy(0," + j + ")"), "");
+        		       }
+        		    } catch (WebDriverException wde) {} catch (Exception e) {}
+        		    
+        		    
+        		   
+	}
+
+}
